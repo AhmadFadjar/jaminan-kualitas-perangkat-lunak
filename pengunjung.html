@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jumlah Pengunjung</title>
+	<script>
+		function hitungPengunjung() {
+			if (typeof(Storage) !== "undefined") {
+				if (localStorage.visits) {
+					localStorage.visits = Number(localStorage.visits)+1;
+				} else {
+					localStorage.visits = 1;
+				}
+				document.getElementById("visits").innerHTML = "Jumlah pengunjung: " + localStorage.visits;
+			} else {
+				document.getElementById("visits").innerHTML = "Maaf, browser Anda tidak mendukung Local Storage.";
+			}
+		}
+
+		function resetPengunjung() {
+			if (typeof(Storage) !== "undefined") {
+				localStorage.removeItem("visits");
+				document.getElementById("visits").innerHTML = "Jumlah pengunjung: 0";
+			} else {
+				alert("Maaf, browser Anda tidak mendukung Local Storage.");
+			}
+		}
+	</script>
+</head>
+<body onload="hitungPengunjung()">
+	<div id="visits"></div>
+	<button onclick="resetPengunjung()">Reset</button>
+</body>
+</html>
